@@ -1,0 +1,69 @@
+# ------------------------------------
+# 📦 Node dependencies
+# ------------------------------------
+node_modules/
+**/node_modules/
+
+# ------------------------------------
+# 🏗️ Build / Output folders
+# ------------------------------------
+dist/
+build/
+**/dist/
+**/build/
+
+# ------------------------------------
+# 🔐 Environment variables
+# ------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+
+# ------------------------------------
+# 🧾 Logs
+# ------------------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+logs/
+*.log
+
+# ------------------------------------
+# ⚙️ Cache / Temp
+# ------------------------------------
+.tmp/
+temp/
+*.tmp
+.cache/
+**/.cache/
+.vite/
+
+# ------------------------------------
+# 🧪 Test coverage
+# ------------------------------------
+coverage/
+**/coverage/
+
+# ------------------------------------
+# 📝 System files
+# ------------------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------------------
+# 🧰 Editor configs
+# ------------------------------------
+.vscode/
+.idea/
+*.swp
+
+# ------------------------------------
+# 🚀 Optional: Ignore uploads folder (if storing files locally)
+# ------------------------------------
+uploads/
+public/uploads/
