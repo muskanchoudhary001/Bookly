@@ -2,7 +2,8 @@ import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from 'mongoose'
 import { Book } from "./models/bookModel.js";
-
+import  booksRoute from './routes/booksRoute.js'
+import cors from 'cors'
 
 
 const app = express();
@@ -10,10 +11,24 @@ const app = express();
 // Middleware (for JSON parsing, commonly needed)
 app.use(express.json());
 
+//Middleware for handling CORS POLICY
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET','POST','PUT','DELETE'],
+  allowedHeaders: ["Content-Type"],
+})
+)
+
 // Route
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Bookly 📚");
 });
+
+//BookRoute using express route
+
+app.use('/books',booksRoute);
+
+
 
 /*
 //Route to save a new book
