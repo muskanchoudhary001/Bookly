@@ -36,7 +36,7 @@ const EditBooks = () => {
       alert("Error fetching book details");
       navigate('/');
     });
-  }, [id]);
+  }, []);
 
   const handleEditBook = () => {
     const data = { title, author, publishYear, noOfCopies };
