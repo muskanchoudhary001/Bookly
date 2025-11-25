@@ -12,19 +12,24 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
+        const fetchBooks = async () => {
+            try {
+                setLoading(true);
 
-        axios
-            .get('http://localhost:3000/books')
-            .then((response) => {
+                const response = await axios.get('http://localhost:3000/books');
                 setBooks(response.data.data);
-                setLoading(false);
-            })
-            .catch((error) => {
+
+            } catch (error) {
                 console.log(error);
+
+            } finally {
                 setLoading(false);
-            });
+            }
+        };
+
+        fetchBooks();
     }, []);
+
 
 
     return (
@@ -39,7 +44,8 @@ const Home = () => {
             {loading ? (
                 <Spinner />
             ) : (
-                <table className='w-full border-separate border-spacing-2'>
+
+                <table className='w-full border-separate border-spacing-6'>
                     <thead>
                         <tr>
                             <th className='border border-slate-600 rounded-md'>No</th>
@@ -67,11 +73,11 @@ const Home = () => {
                                 </td>
                                 <td className='border border-slate-700 rounded-md text-center'>
                                     <div className='flex justify-center gap-x-4'>
-                                        <Link to={`/books/show/${book._id}`}>
+                                        <Link to={`/books/details/${book._id}`}>
                                             <BsInfoCircle className='text-2xl text-green-800' />
                                         </Link>
 
-                                        <Link to={`/books/edit/${book._id}`}>
+                                        <Link to={`/books/edit/${book._id}`}> 
                                             <AiOutlineEdit className='text-2xl text-yellow-600' />
                                         </Link>
 

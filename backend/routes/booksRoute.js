@@ -62,6 +62,8 @@ router.get("/:id", async (request, response) => {
 // Route to update a book
 router.put("/:id", async (request, response) => {
   try {
+    console.log(`PUT /books/${request.params.id} called with body:`, request.body);  // added log for debugging
+
     if (
       !request.body.title ||
       !request.body.author ||
