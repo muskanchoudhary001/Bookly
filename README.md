@@ -51,7 +51,7 @@ It is currently in development — core features and UI are completed, while use
 ### **Backend**
 - Node.js  
 - Express.js  
-- MongoDB & Mongoose  
+- MongoDB 
 
 ---
 
@@ -150,4 +150,5 @@ It is currently in development — core features and UI are completed, while use
 ## 📄 License
 
 This project is Open Source and free to use.
+
 
