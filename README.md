@@ -29,14 +29,14 @@ It is currently in development — core features and UI are completed, while use
 ---
 
 ## 🏗️ Upcoming Features (Work in Progress)
+
 - 🔐 **User Authentication (JWT + bcrypt)**
 - 👥 Login & Register pages
 - 📚 User-based book management
 - 🖼️ Improved UI with animations
 - 📄 Pagination / Search / Filters
 - 🌙 Dark mode toggle
-- 📱 Fully mobile optimized layout
-
+  
 ---
 
 ## 🛠️ Tech Stack
@@ -150,3 +150,4 @@ It is currently in development — core features and UI are completed, while use
 ## 📄 License
 
 This project is Open Source and free to use.
+
