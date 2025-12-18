@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import BackButton from '../components/BackButton'
-import Spinner from '../components/Spinner'
+import BackButton from '../components/common/BackButton'
+import Spinner from '../components/common/Spinner'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSnackbar } from 'notistack'
@@ -9,7 +9,7 @@ const DeleteBooks = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const { id } = useParams()
-  const {enqueueSnackbar} = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleDeleteBook = () => {
 
@@ -23,12 +23,12 @@ const DeleteBooks = () => {
       .delete(`http://localhost:3000/books/${id}`)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar('Book deleted successfully !!' , {varient: 'success'})
+        enqueueSnackbar('Book deleted successfully !!', { varient: 'success' })
         navigate('/');
       })
       .catch((error) => {
         setLoading(false);
-       enqueueSnackbar("Error" , {varient:'error'})
+        enqueueSnackbar("Error", { varient: 'error' })
         console.log(error);
       });
   }
