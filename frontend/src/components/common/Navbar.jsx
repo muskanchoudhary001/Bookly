@@ -6,19 +6,19 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-6 py-4">
 
       {/* Logo + Brand */}
-      <Link to="/" className="flex items-center gap-2">
+      <Link to="/" className="flex items-center">
         <img
-          src="/src/assets/logo.webp"
+          src="/src/assets/Logo1.webp"
           alt="Bookly Logo"
-          className="w-8 h-8 object-contain"
+          className="w-14 h-12 object-contain"
         />
-        <span className="text-2xl font-bold text-purple-300">
+        <span className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
           Bookly
         </span>
       </Link>
 
       {/* Navigation Links */}
-      <div className="flex gap-6 text-lg font-bold text-purple-300">
+      <div className="flex gap-6 text-lg font-bold text-blue-600">
         <Link to="/">Home</Link>
         <Link to="/books/create">Add Book</Link>
       </div>
