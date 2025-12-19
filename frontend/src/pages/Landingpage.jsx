@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Landingpage = () => {
+    const navigate = useNavigate();
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
 
@@ -10,23 +12,35 @@ const Landingpage = () => {
         alt="decor"
         className="absolute top-20 left-16 w-36 opacity-30 rotate-12 z-0"
       />
+       
+       <img
+        src="./src/assets/Home.webp"
+        alt="decor"
+        className="absolute top-2 left-1/2 -translate-x-1/2 w-28 opacity-30 rotate-12 z-0"
+      />
 
       <img
         src="./src/assets/Landing1.webp"
         alt="decor"
-        className="absolute top-32 right-24 w-36 opacity-25 -rotate-6 z-0"
+        className="absolute top-32 right-24 w-40 opacity-25 -rotate-6 z-0"
       />
 
       <img
         src="./src/assets/Landing2.webp"
         alt="decor"
-        className="absolute bottom-28 left-24 w-36 opacity-20 rotate-6 z-0"
+        className="absolute bottom-28 left-24 w-40 opacity-20 rotate-6 z-0"
       />
 
       <img
         src="./src/assets/Landing3.webp"
         alt="decor"
-        className="absolute bottom-20 right-20 w-36 opacity-30 -rotate-12 z-0"
+        className="absolute bottom-20 right-20 w-44 opacity-30 -rotate-12 z-0"
+      />
+
+      <img
+        src="./src/assets/Landing4.webp"
+        alt="decor"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 w-16 opacity-30 -rotate-12 z-0"
       />
 
       {/* Glow background */}
@@ -49,7 +63,9 @@ const Landingpage = () => {
 
           {/* CTA Button */}
           <div className="mt-8 ml-32">
-            <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-700 text-white font-semibold text-lg shadow-lg hover:scale-105 transition-transform duration-300">
+            <button 
+             onClick={() => navigate("/login")}
+            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-700 text-white font-semibold text-lg shadow-lg hover:scale-105 transition-transform duration-300">
               Get Started
             </button>
           </div>

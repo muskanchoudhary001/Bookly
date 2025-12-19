@@ -6,6 +6,8 @@ import EditBooks from "./pages/EditBooks";
 import DeleteBooks from "./pages/DeleteBooks";
 import ShowBooks from "./pages/ShowBooks";
 import Landingpage from "./pages/Landingpage";
+import Loginpage from "./pages/Loginpage"
+import Registerpage from './pages/Registerpage'
 
 const App = () => {
   return (
@@ -17,10 +19,10 @@ const App = () => {
         <Route path="/books/edit/:id" element={<EditBooks />} />
         <Route path="/books/delete/:id" element={<DeleteBooks />} />
 
-        
-        {/* ✅ TEMPORARY TEST ROUTE */}
         <Route path="/landingpage" element={<Landingpage />} />
-        
+        <Route path="/login" element={<Loginpage />} />
+        <Route path="/register" element={<Registerpage />} />
+
       </Route>
     </Routes>
   );

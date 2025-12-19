@@ -18,9 +18,9 @@ const Navbar = () => {
       </Link>
 
       {/* Navigation Links */}
-      <div className="flex gap-6 text-lg font-bold text-blue-600">
-        <Link to="/">Home</Link>
-        <Link to="/books/create">Add Book</Link>
+      <div className="flex gap-6 text-3xl mr-6 font-bold text-blue-600">
+        <Link to="/landingpage">Home</Link>
+        {/* <Link to="/books/create">Add Book</Link> */}
       </div>
 
     </nav>
