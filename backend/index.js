@@ -2,7 +2,7 @@ import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from 'mongoose'
 import { Book } from "./models/bookModel.js";
-import  booksRoute from './routes/booksRoute.js'
+import  booksRoutes from './routes/booksRoutes.js'
 import cors from 'cors'
 
 
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 
 //BookRoute using express route
 
-app.use('/books',booksRoute);
+app.use('/books',booksRoutes);
 
 
 

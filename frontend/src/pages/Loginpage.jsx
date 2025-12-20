@@ -10,7 +10,7 @@ const Loginpage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <img
         src="./src/assets/LoginAssets/1.webp"
         alt="decor"
@@ -36,7 +36,7 @@ const Loginpage = () => {
       />
 
       {/* Login Card */}
-      <div className="relative z-10 max-w-md w-full bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-gray-200 min-h-[400px] ">
+      <div className="relative z-10 max-w-md w-full bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-gray-200 min-h-[400px]">
         <h2 className="text-3xl font-bold mb-6 text-center text-pink-500">Login</h2>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
@@ -60,10 +60,10 @@ const Loginpage = () => {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-gray-200 ">
+        <p className="mt-6 text-center text-gray-200 text-xl">
           Don’t have an account?{" "}
           <span
-            className="bg-gradient-to-r from-pink-500 to-pink-700 text-white px-4 py-2 rounded-4xl cursor-pointer inline-block hover:scale-105 transition-transform duration-300 "
+            className=" ml-0.5 text-pink-500 underline cursor-pointer inline-block"
             onClick={() => navigate("/register")}
           >
             Register

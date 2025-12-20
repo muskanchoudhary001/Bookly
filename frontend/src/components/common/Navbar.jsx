@@ -12,7 +12,7 @@ const Navbar = () => {
           alt="Bookly Logo"
           className="w-14 h-12 object-contain"
         />
-        <span className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+        <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent">
           Bookly
         </span>
       </Link>

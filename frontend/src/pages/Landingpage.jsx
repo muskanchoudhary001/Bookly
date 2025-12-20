@@ -8,37 +8,37 @@ const Landingpage = () => {
 
       {/* Decorative floating images */}
       <img
-        src="./src/assets/Landing.webp"
+        src="./src/assets/LandingAssets/Landing.webp"
         alt="decor"
         className="absolute top-20 left-16 w-36 opacity-30 rotate-12 z-0"
       />
        
        <img
-        src="./src/assets/Home.webp"
+        src="./src/assets/LandingAssets/Home.webp"
         alt="decor"
         className="absolute top-2 left-1/2 -translate-x-1/2 w-28 opacity-30 rotate-12 z-0"
       />
 
       <img
-        src="./src/assets/Landing1.webp"
+        src="./src/assets/LandingAssets/Landing1.webp"
         alt="decor"
         className="absolute top-32 right-24 w-40 opacity-25 -rotate-6 z-0"
       />
 
       <img
-        src="./src/assets/Landing2.webp"
+        src="./src/assets/LandingAssets/Landing2.webp"
         alt="decor"
         className="absolute bottom-28 left-24 w-40 opacity-20 rotate-6 z-0"
       />
 
       <img
-        src="./src/assets/Landing3.webp"
+        src="./src/assets/LandingAssets/Landing3.webp"
         alt="decor"
         className="absolute bottom-20 right-20 w-44 opacity-30 -rotate-12 z-0"
       />
 
       <img
-        src="./src/assets/Landing4.webp"
+        src="./src/assets/LandingAssets/Landing4.webp"
         alt="decor"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 w-16 opacity-30 -rotate-12 z-0"
       />
@@ -73,7 +73,7 @@ const Landingpage = () => {
 
         {/* Main Image */}
         <img
-          src="./src/assets/Home2.webp"
+          src="./src/assets/LandingAssets/Home2.webp"
           alt="home icon"
           className="w-64 h-64 object-contain animate-fade-in"
         />
