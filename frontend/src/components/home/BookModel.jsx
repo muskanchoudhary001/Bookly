@@ -1,44 +1,78 @@
-import { AiOutlineClose } from 'react-icons/ai'
-import { BiUserCircle } from 'react-icons/bi';
-import { PiBookOpenTextLight } from 'react-icons/pi';
+import { AiOutlineClose } from "react-icons/ai";
+import { BiUserCircle } from "react-icons/bi";
+import { PiBookOpenTextLight } from "react-icons/pi";
 
 const BookModel = ({ book, onClose }) => {
-    return (
-        <div className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center '
-            onClick={onClose}
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center 
+      bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      {/* Modal Card */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-[600px] max-w-[90%] 
+        bg-white/15 backdrop-blur-xl 
+        border border-white/20 
+        rounded-3xl shadow-2xl p-8 text-white"
+      >
+        {/* Close Button */}
+        <AiOutlineClose
+          className="absolute top-5 right-5 text-3xl 
+          text-pink-400 hover:text-pink-600 
+          cursor-pointer transition"
+          onClick={onClose}
+        />
+
+        {/* Publish Year Badge */}
+        <span
+          className="inline-block mb-4 px-4 py-1 text-sm font-semibold 
+          rounded-full bg-gradient-to-r 
+          from-pink-400 to-pink-600"
         >
-            <div
-                onClick={(event) => event.stopPropagation()}
-                className='w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative'
-            >
-                <AiOutlineClose
-                    className='absolute right-6 top-6 text-3xl text-red-600 cursor-pointer'
-                    onClick={onClose}
-                />
-                <h2 className=" w-fit px-4 py-1 bg-red-300 rounded-lg">
-                    {book.publishYear}
-                </h2>
+          {book.publishYear}
+        </span>
 
-                <h4 className="my-2 text-gray-500">{book._id}</h4>
+        {/* Book ID */}
+        <p className="text-xs text-white/60 mb-4 break-all">
+          {book._id}
+        </p>
 
-                <div className="flex justify-start items-center gap-x-2">
-                    <PiBookOpenTextLight className="text-red-300 text-2xl" />
-                    <h2 className="my-1">{book.title}</h2>
-                </div>
-
-                <div className="flex justify-start items-center gap-x-2">
-                    <BiUserCircle className="text-red-300 text-2xl" />
-                    <h2 className="my-1">{book.author}</h2>
-                </div>
-                <p className='mt-4'>Anything You want to show</p>
-                <p className='my-2'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi hic
-                    cumque quos quae quas? Provident pariatur rem vitae sit assumenda quis,
-                    suscipit maiores, dignissimos cum praesentium officia, mollitia ipsa minima?
-                </p>
-            </div>
+        {/* Title */}
+        <div className="flex items-center gap-3 mb-3">
+          <PiBookOpenTextLight className="text-2xl text-blue-300" />
+          <h2 className="text-xl font-semibold">
+            {book.title}
+          </h2>
         </div>
-    )
-}
 
-export default BookModel
+        {/* Author */}
+        <div className="flex items-center gap-3 mb-6">
+          <BiUserCircle className="text-2xl text-blue-300" />
+          <h3 className="text-lg">
+            {book.author}
+          </h3>
+        </div>
+
+        {/* Cover Image */}
+        <img
+          src={`http://localhost:5000/${book.coverImage?.replace(/\\/g, "/")}`}
+          alt={book.title}
+          className="w-full h-64 object-cover rounded-xl mb-4"
+        />
+
+
+        {/* Description */}
+        <p className="text-white/80 leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Animi hic cumque quos quae quas? Provident pariatur rem vitae
+          sit assumenda quis, suscipit maiores, dignissimos cum
+          praesentium officia, mollitia ipsa minima.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default BookModel;

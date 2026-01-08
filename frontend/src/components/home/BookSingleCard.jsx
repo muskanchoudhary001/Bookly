@@ -1,64 +1,117 @@
 import { Link } from "react-router-dom";
 import { PiBookOpenTextLight } from "react-icons/pi";
-import { BiUserCircle , BiShow} from "react-icons/bi";
+import { BiUserCircle, BiShow } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
 import { useState } from "react";
 import BookModel from "./BookModel";
 
-
 const BookSingleCard = ({ book }) => {
-   const [showModel,setShowModel] = useState(false)
+  const [showModel, setShowModel] = useState(false);
 
-    return (
-
-        <div
-            key={book._id}
-            className="border-2 border-gray-500 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl"
+  return (
+    <>
+      <div
+        className="relative bg-white/15 backdrop-blur-xl 
+        border border-white/20 rounded-3xl shadow-xl 
+        p-6 text-white transition 
+        hover:-translate-y-1 hover:shadow-2xl"
+      >
+        {/* Publish Year */}
+        <span
+          className="absolute top-4 right-4 px-3 py-1 text-xs font-semibold 
+          rounded-full bg-gradient-to-r from-pink-400 to-pink-600"
         >
-            <h2 className="absolute top-1 right-2 px-4 py-1 bg-red-300 rounded-lg">
-                {book.publishYear}
-            </h2>
+          {book.publishYear}
+        </span>
 
-            <h4 className="my-2 text-gray-500">{book._id}</h4>
+        {/* Cover Image */}
+        <div className="flex justify-center mb-4">
+          <div
+            className="w-28 h-40 rounded-xl overflow-hidden 
+            border border-white/20 shadow-lg bg-white/10"
+          >
+            <img
+              src={`http://localhost:5000/${book.coverImage?.replace(/\\/g, "/")}`}
+              alt={book.title}
+              className="w-full h-full object-cover 
+                   hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                e.target.src = "/placeholder-book.png";
+              }}
+            />
 
-            <div className="flex justify-start items-center gap-x-2">
-                <PiBookOpenTextLight className="text-red-300 text-2xl" />
-                <h2 className="my-1">{book.title}</h2>
-            </div>
-
-            <div className="flex justify-start items-center gap-x-2">
-                <BiUserCircle className="text-red-300 text-2xl" />
-                <h2 className="my-1">{book.author}</h2>
-            </div>
-
-            <div className="flex justify-between items-center gap-x-2 mt-4 p-4">
-                <BiShow 
-                 className="text-3xl text-blue-800 hover:text-black cursor-pointer"
-                 onClick={() => setShowModel(true)}
-                />
-                <Link to={`/books/details/${book._id}`}>
-                    <BsInfoCircle className="text-2xl text-green-800 hover:text-black" />
-                </Link>
-
-                <Link to={`/books/edit/${book._id}`}>
-                    <AiOutlineEdit className="text-2xl text-yellow-600 hover:text-black" />
-                </Link>
-
-                <Link to={`/books/delete/${book._id}`}>
-                    <MdOutlineDelete className="text-2xl text-red-600 hover:text-black" />
-                </Link>
-            </div>
-            {
-                showModel && (
-                    <BookModel book={book} onClose={() => setShowModel(false)}/>
-                )
-            }
+          </div>
         </div>
 
+        {/* ID */}
+        <p className="text-[10px] text-white/40 mb-3 break-all text-center">
+          {book._id}
+        </p>
 
-    )
-}
+        {/* Title */}
+        <div className="flex items-center gap-2 mb-2">
+          <PiBookOpenTextLight className="text-xl text-blue-300 shrink-0" />
+          <h2 className="text-sm font-semibold line-clamp-2">
+            {book.title}
+          </h2>
+        </div>
 
-export default BookSingleCard
+        {/* Author */}
+        <div className="flex items-center gap-2 mb-5">
+          <BiUserCircle className="text-lg text-blue-300 shrink-0" />
+          <p className="text-xs text-white/80 line-clamp-1">
+            {book.author}
+          </p>
+        </div>
+
+        {/* Actions */}
+        <div className="flex justify-between items-center pt-3 border-t border-white/10">
+          <button
+            onClick={() => setShowModel(true)}
+            className="p-2 rounded-full bg-blue-500/20 
+            hover:bg-blue-500/40 transition"
+            title="Quick View"
+          >
+            <BiShow className="text-lg text-blue-300" />
+          </button>
+
+          <Link
+            to={`/books/details/${book._id}`}
+            className="p-2 rounded-full bg-green-500/20 
+            hover:bg-green-500/40 transition"
+            title="Details"
+          >
+            <BsInfoCircle className="text-lg text-green-300" />
+          </Link>
+
+          <Link
+            to={`/books/edit/${book._id}`}
+            className="p-2 rounded-full bg-yellow-500/20 
+            hover:bg-yellow-500/40 transition"
+            title="Edit"
+          >
+            <AiOutlineEdit className="text-lg text-yellow-300" />
+          </Link>
+
+          <Link
+            to={`/books/delete/${book._id}`}
+            className="p-2 rounded-full bg-red-500/20 
+            hover:bg-red-500/40 transition"
+            title="Delete"
+          >
+            <MdOutlineDelete className="text-lg text-red-300" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Modal */}
+      {showModel && (
+        <BookModel book={book} onClose={() => setShowModel(false)} />
+      )}
+    </>
+  );
+};
+
+export default BookSingleCard;

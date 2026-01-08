@@ -12,10 +12,8 @@ const DeleteBooks = () => {
   const { enqueueSnackbar } = useSnackbar()
 
   const handleDeleteBook = () => {
-
-    // Confirmation popup
     const confirmed = window.confirm("Are you sure you want to delete this book?");
-    if (!confirmed) return; // If user clicks Cancel, stop here
+    if (!confirmed) return;
 
     setLoading(true);
 
@@ -34,20 +32,47 @@ const DeleteBooks = () => {
   }
 
   return (
-    <div className='p-4'>
-      <BackButton />
-      <h1 className='text-3xl my-4'>Delete Book</h1>
-      {loading ? <Spinner /> : ''}
-      <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto'>
-        <h3>Are you Sure you want to delete this book ? </h3>
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
 
-        <button
-          className='p-4 bg-red-600 text-white m-8 w-full '
-          onClick={handleDeleteBook}
+      {/* Glow Backgrounds */}
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-red-500/20 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-3xl z-0" />
 
+      <div className="relative z-10 w-full max-w-xl px-4">
+        <BackButton />
+
+        <h1
+          className="text-4xl font-bold text-center mb-8 
+          bg-gradient-to-r from-red-400 to-pink-600 
+          bg-clip-text text-transparent"
         >
-          Delete this Book
-        </button>
+          Delete Book
+        </h1>
+
+        {loading && <Spinner />}
+
+        {/* Glass Card */}
+        <div
+          className="bg-white/15 backdrop-blur-xl 
+          border border-white/20 
+          rounded-3xl shadow-2xl 
+          p-8 text-center text-white"
+        >
+          <h3 className="text-lg mb-6 text-white/80">
+            Are you sure you want to permanently delete this book?
+          </h3>
+
+          <button
+            onClick={handleDeleteBook}
+            className="w-full py-3 rounded-2xl 
+            bg-gradient-to-r from-red-500 to-pink-600 
+            text-white font-semibold text-lg 
+            shadow-lg hover:scale-105 
+            transition-transform duration-300"
+          >
+            Delete This Book
+          </button>
+        </div>
       </div>
     </div>
   )
