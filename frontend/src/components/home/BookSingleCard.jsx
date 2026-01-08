@@ -27,23 +27,24 @@ const BookSingleCard = ({ book }) => {
         </span>
 
         {/* Cover Image */}
-        <div className="flex justify-center mb-4">
-          <div
-            className="w-28 h-40 rounded-xl overflow-hidden 
-            border border-white/20 shadow-lg bg-white/10"
-          >
-            <img
-              src={`http://localhost:5000/${book.coverImage?.replace(/\\/g, "/")}`}
-              alt={book.title}
-              className="w-full h-full object-cover 
-                   hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                e.target.src = "/placeholder-book.png";
-              }}
-            />
+       {/* Cover Image */}
+<div className="flex justify-center mb-4">
+  <div
+    className="w-28 h-40 rounded-xl overflow-hidden 
+    border border-white/20 shadow-lg bg-white/10"
+  >
+    <img
+      src={`http://localhost:3000${book.coverImage}`}
+      alt={book.title}
+      className="w-full h-full object-cover 
+             hover:scale-105 transition-transform duration-300"
+      onError={(e) => {
+        e.target.src = "/placeholder-book.png";
+      }}
+    />
+  </div>
+</div>
 
-          </div>
-        </div>
 
         {/* ID */}
         <p className="text-[10px] text-white/40 mb-3 break-all text-center">

@@ -1,7 +1,8 @@
 import express from "express";
 import { Book } from "../models/bookModel.js";
 import upload from "../middlewares/uploadMiddleware.js";
-
+import fs from "fs";
+import path from "path";
 
 const router = express.Router();
 
@@ -98,29 +99,38 @@ router.patch(
         return res.status(404).json({ message: "Book not found" });
       }
 
-      // Update fields ONLY if provided
-      if (req.body.title) book.title = req.body.title;
-      if (req.body.author) book.author = req.body.author;
-      if (req.body.publishYear) book.publishYear = req.body.publishYear;
-      if (req.body.noOfCopies) book.noOfCopies = req.body.noOfCopies;
-
-      // Update image ONLY if uploaded
-      if (req.file) {
-        book.coverImage = `/uploads/books/${req.file.filename}`;
+      // If new image uploaded → delete old image
+      if (req.file && book.coverImage) {
+        const oldImagePath = path.join(process.cwd(), book.coverImage);
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+        }
       }
 
-      await book.save();
+      const updatedData = {
+        title: req.body.title,
+        author: req.body.author,
+        publishYear: req.body.publishYear,
+        noOfCopies: req.body.noOfCopies,
+      };
 
-      return res.status(200).json({
-        message: "Book updated successfully",
-        book,
-      });
+      if (req.file) {
+        updatedData.coverImage = `/uploads/books/${req.file.filename}`;
+      }
+
+      await Book.findByIdAndUpdate(id, updatedData);
+
+      res.status(200).json({ message: "Book updated successfully" });
     } catch (error) {
-      console.log(error.message);
       res.status(500).json({ message: error.message });
     }
   }
 );
+/*in patch it is allowing to upload or only the required fields , 
+also when uploading cover image it
+ prevents from genarting older copies  and 
+ making multiple copies preventing it from spaming the uploads folder*/
+
 
 
 // Route to delete a book
