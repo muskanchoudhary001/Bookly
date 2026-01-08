@@ -56,11 +56,26 @@ const BookModel = ({ book, onClose }) => {
         </div>
 
         {/* Cover Image */}
-        <img
-          src={`http://localhost:5000/${book.coverImage?.replace(/\\/g, "/")}`}
-          alt={book.title}
-          className="w-full h-64 object-cover rounded-xl mb-4"
-        />
+        {/* Cover Image */}
+        {book.coverImage && (
+          <img
+            src={`http://localhost:3000${book.coverImage}`}
+            alt={book.title}
+            className="
+      w-40 h-56
+      object-cover
+      rounded-2xl
+      mx-auto
+      mb-5
+      shadow-lg
+      hover:scale-105
+      transition-transform
+      duration-300
+    "
+          />
+        )}
+
+
 
 
         {/* Description */}

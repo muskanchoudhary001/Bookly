@@ -13,12 +13,12 @@ const app = express();
 app.use(express.json());
 
 //Middle ware for book covers
-app.use("/uploads", express.static(path.join("uploads")));
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 //Middleware for handling CORS POLICY
 app.use(cors({
   origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ["Content-Type"],
 })
 )
