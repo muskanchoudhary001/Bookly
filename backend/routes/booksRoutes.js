@@ -1,14 +1,17 @@
 import express from "express";
 import { Book } from "../models/bookModel.js";
 import upload from "../middlewares/uploadMiddleware.js";
+import { protect, adminOnly } from "../middlewares/authMiddleware.js";
 import fs from "fs";
 import path from "path";
 
 const router = express.Router();
 
-// Route to save a new book
+// Route to create a new book
 router.post(
   "/",
+  protect,
+  adminOnly,
   upload.single("coverImage"),
   async (req, res) => {
     try {
@@ -31,21 +34,32 @@ router.post(
 
 
 // Route to get all books
-router.get("/", async (request, response) => {
+router.get("/", protect, async (req, res) => {
   try {
-    const books = await Book.find({});
-    return response.status(200).json({
+    let books;
+
+    // Admin sees all books
+    if (req.user.role === "admin") {
+      books = await Book.find({});
+    } 
+    // User sees only books with >= 10 copies
+    else {
+      books = await Book.find({ noOfCopies: { $gte: 10 } });
+    }
+
+    return res.status(200).json({
       count: books.length,
       data: books,
     });
   } catch (error) {
     console.log(error.message);
-    response.status(500).send({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
+
 // Route to get one book
-router.get("/:id", async (request, response) => {
+router.get("/:id",protect, async (request, response) => {
   try {
     const { id } = request.params;
     const book = await Book.findById(id);
@@ -89,6 +103,8 @@ router.get("/:id", async (request, response) => {
 // Route to update a book (PARTIAL UPDATE)
 router.patch(
   "/:id",
+  protect,
+  adminOnly,
   upload.single("coverImage"),
   async (req, res) => {
     try {
@@ -134,7 +150,7 @@ also when uploading cover image it
 
 
 // Route to delete a book
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", protect,adminOnly,async (request, response) => {
   try {
     const { id } = request.params;
     const result = await Book.findByIdAndDelete(id);

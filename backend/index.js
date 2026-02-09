@@ -3,6 +3,7 @@ import { PORT, mongoDBURL } from "./config.js";
 import mongoose from 'mongoose'
 import { Book } from "./models/bookModel.js";
 import booksRoutes from './routes/booksRoutes.js'
+import authRoutes from "./routes/authRoutes.js"
 import cors from 'cors'
 import path from "path"
 
@@ -11,6 +12,9 @@ const app = express();
 
 // Middleware (for JSON parsing, commonly needed)
 app.use(express.json());
+
+//Middleware for auth
+app.use("/api/auth", authRoutes);
 
 //Middle ware for book covers
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
