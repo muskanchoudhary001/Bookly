@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import api from '../services/api'
 import { useParams } from 'react-router-dom'
 import BackButton from '../components/common/BackButton'
 import Spinner from '../components/common/Spinner'
@@ -13,7 +13,7 @@ const ShowBooks = () => {
     const showBooks = async () => {
       try {
         setLoading(true)
-        const response = await axios.get(`http://localhost:3000/books/${id}`)
+        const response = await api.get(`/books/${id}`)
         setBook(response.data)
       } catch (error) {
         console.log(error)

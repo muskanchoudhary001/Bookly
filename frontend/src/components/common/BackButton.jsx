@@ -1,17 +1,26 @@
-import { Link } from 'react-router-dom';
-import { BsArrowLeft } from 'react-icons/bs';
+import { useNavigate } from "react-router-dom";
+import { BsArrowLeft } from "react-icons/bs";
 
-const BackButton = ({ destination = '/' }) => {
+const BackButton = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex">
-      <Link
-        to={destination}
-        className="flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 
-                   text-white px-4 py-2 rounded-xl hover:bg-white/20 transition-all duration-300"
-      >
-        <BsArrowLeft className="text-2xl" />
-      </Link>
-    </div>
+    <button
+      onClick={() => navigate(-1)}
+      className="
+        w-12 h-12
+  flex items-center justify-center
+  rounded-full
+  bg-blue-500
+  text-white
+  shadow-md
+  hover:bg-blue-600
+  hover:shadow-lg
+  transition-all duration-300
+      "
+    >
+      <BsArrowLeft className="text-3xl " />
+    </button>
   );
 };
 

@@ -34,28 +34,37 @@ router.post(
 
 
 // Route to get all books
-router.get("/", protect, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let books;
 
-    // Admin sees all books
-    if (req.user.role === "admin") {
-      books = await Book.find({});
-    } 
-    // User sees only books with >= 10 copies
-    else {
-      books = await Book.find({ noOfCopies: { $gte: 10 } });
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      // Guest user → only 10 books
+      books = await Book.find({}).limit(10);
+    } else {
+      const token = authHeader.split(" ")[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.id);
+
+      if (user.role === "admin") {
+        books = await Book.find({});
+      } else {
+        books = await Book.find({});
+      }
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       count: books.length,
       data: books,
     });
+
   } catch (error) {
-    console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 });
+
 
 
 // Route to get one book

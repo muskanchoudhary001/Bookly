@@ -13,15 +13,15 @@ const BookModel = ({ book, onClose }) => {
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative w-[600px] max-w-[90%] 
-        bg-gradient-to-br from-blue-400/20 via-blue-600/20 to-blue-800/20
+        bg-gradient-to-br from-blue-300/10 via-blue-500/20 to-blue-700/30
         backdrop-blur-xl 
-        border border-blue-300/30
+        border border-blue-600/30
         rounded-3xl shadow-2xl p-8 text-white"
       >
         {/* Close Button */}
         <AiOutlineClose
           className="absolute top-5 right-5 text-3xl 
-          text-blue-300 hover:text-blue-500 
+          text-red-300 hover:text-red-500 
           cursor-pointer transition"
           onClick={onClose}
         />
