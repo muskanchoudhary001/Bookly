@@ -8,26 +8,31 @@ const UserHome = () => {
   const [books, setBooks] = useState([]);
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        if (!user?.token) return;
+ useEffect(() => {
+  const fetchBooks = async () => {
+    try {
+      const token = localStorage.getItem("token");
 
-        const res = await axios.get("http://localhost:3000/api/books", {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+      console.log("TOKEN BEING SENT:", token);
 
-        setBooks(res.data.data);
+      const res = await axios.get("http://localhost:3000/api/books", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      } catch (error) {
-        console.log("Fetch books error:", error.response?.data || error.message);
-      }
-    };
+      console.log("API RESPONSE:", res.data);
 
-    fetchBooks();
-  }, [user]);
+      setBooks(res.data.data);
+
+    } catch (error) {
+      console.log("Fetch books error:", error.response?.data || error.message);
+    }
+  };
+
+  fetchBooks();
+}, []);
+
 
 
 

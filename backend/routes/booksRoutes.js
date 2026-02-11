@@ -2,8 +2,12 @@ import express from "express";
 import { Book } from "../models/bookModel.js";
 import upload from "../middlewares/uploadMiddleware.js";
 import { protect, adminOnly } from "../middlewares/authMiddleware.js";
+import { optionalProtect } from "../middlewares/optionalProtectMiddleware.js";
 import fs from "fs";
 import path from "path";
+import jwt from "jsonwebtoken";
+import { User } from "../models/userModel.js"
+
 
 const router = express.Router();
 
@@ -34,49 +38,31 @@ router.post(
 
 
 // Route to get all books
-router.get("/", async (req, res) => {
+router.get("/", optionalProtect, async (req, res) => {
   try {
     let books;
 
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader) {
-      books = await Book.find({}).limit(10);
-    } else {
-      const token = authHeader.split(" ")[1];
-
-      let decoded;
-      try {
-        decoded = jwt.verify(token, process.env.JWT_SECRET);
-      } catch (err) {
-        return res.status(401).json({ message: "Invalid token" });
-      }
-
-      const user = await User.findById(decoded.id);
-
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      if (user.role === "admin") {
-        books = await Book.find({});
-      } else {
-        books = await Book.find({});
-      }
+    if (req.user && req.user.role?.toLowerCase() === "admin") {
+      books = await Book.find({});
+    } 
+    else if (req.user) {
+      books = await Book.find({ noOfCopies: { $gt: 10 } });
+    } 
+    else {
+      books = await Book.find({ noOfCopies: { $gte: 10 } }).limit(10);
     }
 
-    res.status(200).json({
+    res.json({
       count: books.length,
-      data: books,
+      data: books
     });
+    console.log("REQ USER:", req.user);
 
   } catch (error) {
-    console.log("BOOK ROUTE ERROR:", error);
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 });
-
-
 
 
 // Route to get one book

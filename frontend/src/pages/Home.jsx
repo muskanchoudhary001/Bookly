@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import Spinner from '../components/common/Spinner';
 import { Link } from 'react-router-dom';
 import { MdOutlineAddBox } from "react-icons/md";
@@ -15,7 +15,7 @@ const Home = () => {
         const fetchBooks = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://localhost:3000/books');
+                const response = await api.get('http://localhost:3000/api/books');
                 setBooks(response.data.data);
             } catch (error) {
                 console.log(error);
