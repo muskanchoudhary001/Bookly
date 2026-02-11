@@ -17,68 +17,52 @@ const CreateBooks = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveBook = () => {
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("author", author);
-  formData.append("publishYear", publishYear);
-  formData.append("noOfCopies", noOfCopies);
-  formData.append("coverImage", coverImage);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("publishYear", publishYear);
+    formData.append("noOfCopies", noOfCopies);
+    formData.append("coverImage", coverImage);
 
-  setLoading(true);
+    setLoading(true);
 
-  api
-    .post("/books", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then(() => {
-      setLoading(false);
-      enqueueSnackbar("Book created successfully", { variant: "success" });
-      navigate("/");
-    })
-    .catch((error) => {
-      setLoading(false);
-      enqueueSnackbar(
-        error.response?.data?.message || "Error creating book",
-        { variant: "error" }
-      );
-      console.error(error);
-    });
-};
-
+    api
+      .post("/books", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        setLoading(false);
+        enqueueSnackbar("Book created successfully", { variant: "success" });
+        navigate("/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        enqueueSnackbar(
+          error.response?.data?.message || "Error creating book",
+          { variant: "error" }
+        );
+        console.error(error);
+      });
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
 
-      {/* Decorative Images (same vibe as Login) */}
-      <img
-        src="./src/assets/LoginAssets/1.webp"
-        className="absolute top-20 left-16 w-36 opacity-80 rotate-12 z-0"
-        alt=""
-      />
-      <img
-        src="./src/assets/LoginAssets/2.webp"
-        className="absolute top-32 right-24 w-36 opacity-80 -rotate-6 z-0"
-        alt=""
-      />
-      <img
-        src="./src/assets/LoginAssets/3.webp"
-        className="absolute bottom-28 left-24 w-36 opacity-80 rotate-6 z-0"
-        alt=""
-      />
-      <img
-        src="./src/assets/LoginAssets/4.webp"
-        className="absolute bottom-20 right-20 w-36 opacity-80 -rotate-12 z-0"
-        alt=""
-      />
+      {/* Decorative Images */}
+      <img src="./src/assets/LoginAssets/1.webp" className="absolute top-20 left-16 w-36 opacity-80 rotate-12 z-0" alt="" />
+      <img src="./src/assets/LoginAssets/2.webp" className="absolute top-32 right-24 w-36 opacity-80 -rotate-6 z-0" alt="" />
+      <img src="./src/assets/LoginAssets/3.webp" className="absolute bottom-28 left-24 w-36 opacity-80 rotate-6 z-0" alt="" />
+      <img src="./src/assets/LoginAssets/4.webp" className="absolute bottom-20 right-20 w-36 opacity-80 -rotate-12 z-0" alt="" />
 
       {/* Form Card */}
-      <div className="relative z-10 max-w-md w-full bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-gray-200">
+      <div className="relative z-10 max-w-md w-full bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-blue-200/40">
 
         <BackButton />
 
-        <h2 className="text-3xl font-bold mb-6 text-center text-pink-500">
+        <h2 className="text-3xl font-bold mb-6 text-center
+        bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent">
           Create New Book
         </h2>
 
@@ -91,9 +75,9 @@ const CreateBooks = () => {
             placeholder="Book Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="p-3 border border-gray-300 rounded-xl
-            focus:outline-none focus:ring-2 focus:ring-pink-400
-            shadow-inner bg-gray-50
+            className="p-3 border border-blue-200 rounded-xl
+            focus:outline-none focus:ring-2 focus:ring-blue-500
+            shadow-inner bg-blue-50/40
             placeholder:text-gray-500 text-gray-800"
           />
 
@@ -102,9 +86,9 @@ const CreateBooks = () => {
             placeholder="Author Name"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="p-3 border border-gray-300 rounded-xl
-            focus:outline-none focus:ring-2 focus:ring-pink-400
-            shadow-inner bg-gray-50
+            className="p-3 border border-blue-200 rounded-xl
+            focus:outline-none focus:ring-2 focus:ring-blue-500
+            shadow-inner bg-blue-50/40
             placeholder:text-gray-500 text-gray-800"
           />
 
@@ -113,9 +97,9 @@ const CreateBooks = () => {
             placeholder="Publish Year"
             value={publishYear}
             onChange={(e) => setPublishYear(e.target.value)}
-            className="p-3 border border-gray-300 rounded-xl
-            focus:outline-none focus:ring-2 focus:ring-pink-400
-            shadow-inner bg-gray-50
+            className="p-3 border border-blue-200 rounded-xl
+            focus:outline-none focus:ring-2 focus:ring-blue-500
+            shadow-inner bg-blue-50/40
             placeholder:text-gray-500 text-gray-800"
           />
 
@@ -124,9 +108,9 @@ const CreateBooks = () => {
             placeholder="Number of Copies"
             value={noOfCopies}
             onChange={(e) => setNoOfCopies(e.target.value)}
-            className="p-3 border border-gray-300 rounded-xl
-            focus:outline-none focus:ring-2 focus:ring-pink-400
-            shadow-inner bg-gray-50
+            className="p-3 border border-blue-200 rounded-xl
+            focus:outline-none focus:ring-2 focus:ring-blue-500
+            shadow-inner bg-blue-50/40
             placeholder:text-gray-500 text-gray-800"
           />
 
@@ -135,15 +119,15 @@ const CreateBooks = () => {
             type="file"
             accept="image/*"
             onChange={(e) => setCoverImage(e.target.files[0])}
-            className="p-3 border border-gray-300 rounded-xl
-            bg-gray-50 text-gray-600"
+            className="p-3 border border-blue-200 rounded-xl
+            bg-blue-50/40 text-gray-600"
           />
 
           <button
             onClick={handleSaveBook}
             disabled={loading}
             className="mt-4 px-6 py-3 rounded-4xl
-            bg-gradient-to-r from-pink-500 to-pink-700
+            bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800
             text-white font-semibold text-lg
             shadow-lg hover:scale-105 transition-transform
             duration-300 disabled:opacity-50"

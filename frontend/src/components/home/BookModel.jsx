@@ -6,21 +6,22 @@ const BookModel = ({ book, onClose }) => {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center 
-      bg-black/60 backdrop-blur-sm"
+      bg-blue-950/60 backdrop-blur-sm"
       onClick={onClose}
     >
       {/* Modal Card */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative w-[600px] max-w-[90%] 
-        bg-white/15 backdrop-blur-xl 
-        border border-white/20 
+        bg-gradient-to-br from-blue-400/20 via-blue-600/20 to-blue-800/20
+        backdrop-blur-xl 
+        border border-blue-300/30
         rounded-3xl shadow-2xl p-8 text-white"
       >
         {/* Close Button */}
         <AiOutlineClose
           className="absolute top-5 right-5 text-3xl 
-          text-pink-400 hover:text-pink-600 
+          text-blue-300 hover:text-blue-500 
           cursor-pointer transition"
           onClick={onClose}
         />
@@ -29,13 +30,13 @@ const BookModel = ({ book, onClose }) => {
         <span
           className="inline-block mb-4 px-4 py-1 text-sm font-semibold 
           rounded-full bg-gradient-to-r 
-          from-pink-400 to-pink-600"
+          from-blue-400 via-blue-600 to-blue-800"
         >
           {book.publishYear}
         </span>
 
         {/* Book ID */}
-        <p className="text-xs text-white/60 mb-4 break-all">
+        <p className="text-xs text-blue-100/70 mb-4 break-all">
           {book._id}
         </p>
 
@@ -56,7 +57,6 @@ const BookModel = ({ book, onClose }) => {
         </div>
 
         {/* Cover Image */}
-        {/* Cover Image */}
         {book.coverImage && (
           <img
             src={`http://localhost:3000${book.coverImage}`}
@@ -75,11 +75,8 @@ const BookModel = ({ book, onClose }) => {
           />
         )}
 
-
-
-
         {/* Description */}
-        <p className="text-white/80 leading-relaxed">
+        <p className="text-blue-100/80 leading-relaxed">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Animi hic cumque quos quae quas? Provident pariatur rem vitae
           sit assumenda quis, suscipit maiores, dignissimos cum

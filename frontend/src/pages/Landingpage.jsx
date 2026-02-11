@@ -66,7 +66,7 @@ const Landingpage = () => {
           {/* CTA Button */}
           <div className="mt-10 ml-24">
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/books")}
               className="px-10 py-4 rounded-2xl
               bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800
               text-white font-semibold text-lg
