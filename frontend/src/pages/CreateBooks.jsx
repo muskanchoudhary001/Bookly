@@ -51,10 +51,29 @@ const CreateBooks = () => {
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
 
       {/* Decorative Images */}
-      <img src="./src/assets/LoginAssets/1.webp" className="absolute top-20 left-16 w-36 opacity-80 rotate-12 z-0" alt="" />
-      <img src="./src/assets/LoginAssets/2.webp" className="absolute top-32 right-24 w-36 opacity-80 -rotate-6 z-0" alt="" />
-      <img src="./src/assets/LoginAssets/3.webp" className="absolute bottom-28 left-24 w-36 opacity-80 rotate-6 z-0" alt="" />
-      <img src="./src/assets/LoginAssets/4.webp" className="absolute bottom-20 right-20 w-36 opacity-80 -rotate-12 z-0" alt="" />
+     <img
+        src="./src/assets/LoginAssets/1.webp"
+        alt="decor"
+        className="absolute top-20 left-16 w-36 opacity-80 rotate-12 z-0"
+      />
+
+      <img
+        src="./src/assets/LoginAssets/2.webp"
+        alt="decor"
+        className="absolute top-32 right-24 w-36 opacity-80 -rotate-6 z-0"
+      />
+
+      <img
+        src="./src/assets/LoginAssets/3.webp"
+        alt="decor"
+        className="absolute bottom-28 left-24 w-36 opacity-80 rotate-6 z-0"
+      />
+
+      <img
+        src="./src/assets/LoginAssets/4.webp"
+        alt="decor"
+        className="absolute bottom-20 right-20 w-36 opacity-80 -rotate-12 z-0"
+      />
 
       {/* Form Card */}
       <div className="relative z-10 max-w-md w-full bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-blue-200/40">
