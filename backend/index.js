@@ -1,7 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from 'mongoose'
-import { Book } from "./models/bookModel.js";
 import booksRoutes from './routes/booksRoutes.js'
 import authRoutes from "./routes/authRoutes.js"
 import cors from 'cors'
@@ -23,7 +25,7 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use(cors({
   origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 })
 )
 
@@ -34,7 +36,7 @@ app.get("/", (req, res) => {
 
 //BookRoute using express route
 
-app.use('/books', booksRoutes);
+app.use('/api/books', booksRoutes);
 
 //dB connection 
 mongoose
@@ -44,6 +46,7 @@ mongoose
     // Start server
     app.listen(PORT || 3000, () => {
       console.log(`🚀 Server is running on http://localhost:${PORT || 3000}`);
+      //console.log("JWT_SECRET:", process.env.JWT_SECRET);
     });
 
   })

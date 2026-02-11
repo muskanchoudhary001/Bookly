@@ -1,8 +1,9 @@
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: #08080a;
+  background-color: transparent; /* ✅ important */
 }
+
 
 .bookly-bg {
   background-image: radial-gradient(

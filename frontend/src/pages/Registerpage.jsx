@@ -16,22 +16,22 @@ const Registerpage = () => {
       <img
         src="./src/assets/LoginAssets/1.webp"
         alt="decor"
-        className="absolute top-20 left-16 w-36 opacity-30 rotate-12 z-0"
+        className="absolute top-20 left-16 w-36 opacity-80 rotate-12 z-0"
       />
       <img
         src="./src/assets/LoginAssets/2.webp"
         alt="decor"
-        className="absolute top-32 right-24 w-36 opacity-25 -rotate-6 z-0"
+        className="absolute top-32 right-24 w-36 opacity-80 -rotate-6 z-0"
       />
       <img
         src="./src/assets/LoginAssets/3.webp"
         alt="decor"
-        className="absolute bottom-28 left-24 w-36 opacity-20 rotate-6 z-0"
+        className="absolute bottom-28 left-24 w-36 opacity-80 rotate-6 z-0"
       />
       <img
         src="./src/assets/LoginAssets/4.webp"
         alt="decor"
-        className="absolute bottom-20 right-20 w-36 opacity-30 -rotate-12 z-0"
+        className="absolute bottom-20 right-20 w-36 opacity-80 -rotate-12 z-0"
       />
 
       {/* Register Card */}
@@ -82,7 +82,7 @@ const Registerpage = () => {
         </form>
 
         {/* Footer */}
-        <p className="mt-6 text-center text-gray-200 text-xl">
+        <p className="mt-6 text-center text-gray-800 text-xl">
           Already have an account?
           <span
             className="ml-1 bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent underline decoration-blue-500 underline-offset-2 cursor-pointer inline-block"

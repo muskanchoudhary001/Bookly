@@ -1,26 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: #000;
-  color: #fff;
+  margin: 0;
+  background: transparent; /* IMPORTANT */
+  color: #1f2937; /* gray-800 */
 }
 
-/* Bookly global background */
-.bookly-bg {
-  background-color: #0a0a0a; /* same as bg-neutral-950 */
-  background-image: radial-gradient(
-    ellipse 80% 80% at 50% -20%,
-    rgba(120, 119, 198, 0.3),
-    rgba(255, 255, 255, 0)
-  );
-}
-
+ 
 
 /* Landing page text animation*/
 @keyframes fadeInUp {

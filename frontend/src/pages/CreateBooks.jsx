@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BackButton from "../components/common/BackButton";
 import Spinner from "../components/common/Spinner";
-import axios from "axios";
+import api from "../services/api"
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
@@ -17,30 +17,36 @@ const CreateBooks = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveBook = () => {
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("author", author);
-    formData.append("publishYear", publishYear);
-    formData.append("noOfCopies", noOfCopies);
-    formData.append("coverImage", coverImage);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("author", author);
+  formData.append("publishYear", publishYear);
+  formData.append("noOfCopies", noOfCopies);
+  formData.append("coverImage", coverImage);
 
-    setLoading(true);
+  setLoading(true);
 
-    axios
-      .post("http://localhost:3000/books", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar("Book created successfully", { variant: "success" });
-        navigate("/");
-      })
-      .catch((error) => {
-        setLoading(false);
-        enqueueSnackbar("Error creating book", { variant: "error" });
-        console.log(error);
-      });
-  };
+  api
+    .post("/books", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(() => {
+      setLoading(false);
+      enqueueSnackbar("Book created successfully", { variant: "success" });
+      navigate("/");
+    })
+    .catch((error) => {
+      setLoading(false);
+      enqueueSnackbar(
+        error.response?.data?.message || "Error creating book",
+        { variant: "error" }
+      );
+      console.error(error);
+    });
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -48,22 +54,22 @@ const CreateBooks = () => {
       {/* Decorative Images (same vibe as Login) */}
       <img
         src="./src/assets/LoginAssets/1.webp"
-        className="absolute top-20 left-16 w-36 opacity-30 rotate-12 z-0"
+        className="absolute top-20 left-16 w-36 opacity-80 rotate-12 z-0"
         alt=""
       />
       <img
         src="./src/assets/LoginAssets/2.webp"
-        className="absolute top-32 right-24 w-36 opacity-25 -rotate-6 z-0"
+        className="absolute top-32 right-24 w-36 opacity-80 -rotate-6 z-0"
         alt=""
       />
       <img
         src="./src/assets/LoginAssets/3.webp"
-        className="absolute bottom-28 left-24 w-36 opacity-20 rotate-6 z-0"
+        className="absolute bottom-28 left-24 w-36 opacity-80 rotate-6 z-0"
         alt=""
       />
       <img
         src="./src/assets/LoginAssets/4.webp"
-        className="absolute bottom-20 right-20 w-36 opacity-30 -rotate-12 z-0"
+        className="absolute bottom-20 right-20 w-36 opacity-80 -rotate-12 z-0"
         alt=""
       />
 

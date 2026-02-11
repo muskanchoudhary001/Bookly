@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Landingpage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
 
@@ -10,62 +11,68 @@ const Landingpage = () => {
       <img
         src="./src/assets/LandingAssets/Landing.webp"
         alt="decor"
-        className="absolute top-20 left-16 w-36 opacity-30 rotate-12 z-0"
+        className="absolute top-20 left-16 w-32 opacity-70 rotate-12 z-0"
       />
-       
-       <img
+
+      <img
         src="./src/assets/LandingAssets/Home.webp"
         alt="decor"
-        className="absolute top-2 left-1/2 -translate-x-1/2 w-28 opacity-30 rotate-12 z-0"
+        className="absolute top-6 left-1/2 -translate-x-1/2 w-24 opacity-80 rotate-6 z-0"
       />
 
       <img
         src="./src/assets/LandingAssets/Landing1.webp"
         alt="decor"
-        className="absolute top-32 right-24 w-40 opacity-25 -rotate-6 z-0"
+        className="absolute top-32 right-24 w-36 opacity-100 -rotate-6 z-0"
       />
 
       <img
         src="./src/assets/LandingAssets/Landing2.webp"
         alt="decor"
-        className="absolute bottom-28 left-24 w-40 opacity-20 rotate-6 z-0"
+        className="absolute bottom-28 left-24 w-36 opacity-90 rotate-6 z-0"
       />
 
       <img
         src="./src/assets/LandingAssets/Landing3.webp"
         alt="decor"
-        className="absolute bottom-20 right-20 w-44 opacity-30 -rotate-12 z-0"
+        className="absolute bottom-20 right-20 w-40 opacity-90 -rotate-12 z-0"
       />
 
       <img
         src="./src/assets/LandingAssets/Landing4.webp"
         alt="decor"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 w-16 opacity-30 -rotate-12 z-0"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-14 opacity-90 -rotate-6 z-0"
       />
 
-      {/* Glow background */}
-      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-3xl z-0"></div>
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl z-0"></div>
-
       {/* Content */}
-      <div className="relative flex items-center gap-4 z-10">
+      <div className="relative flex items-center gap-12 z-10">
 
         {/* Text Section */}
-        <div className="text-center animate-fade-in-up">
-          <h1 className="font-bold leading-none pb-8">
-            <span className="block text-8xl bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent">
+        <div className="text-center animate-fade-in-up pl-20 md:pl-30">
+
+          <h1 className="font-extrabold leading-tight pb-6">
+            <span className="block text-8xl bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 bg-clip-text text-transparent">
               Welcome to
             </span>
-            <span className="block text-8xl ml-44 bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent">
+            <span className="block text-8xl ml-32 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 bg-clip-text text-transparent">
               Bookly
             </span>
           </h1>
 
+          <p className="mt-4 text-lg text-gray-800 max-w-md mx-auto">
+            A simple, modern way to manage books with ease and clarity.
+          </p>
+
           {/* CTA Button */}
-          <div className="mt-8 ml-32">
-            <button 
-             onClick={() => navigate("/login")}
-            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-700 text-white font-semibold text-lg shadow-lg hover:scale-105 transition-transform duration-300">
+          <div className="mt-10 ml-24">
+            <button
+              onClick={() => navigate("/login")}
+              className="px-10 py-4 rounded-2xl
+              bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800
+              text-white font-semibold text-lg
+              shadow-lg hover:shadow-xl hover:scale-105
+              transition-all duration-300"
+            >
               Get Started
             </button>
           </div>
@@ -75,7 +82,7 @@ const Landingpage = () => {
         <img
           src="./src/assets/LandingAssets/Home2.webp"
           alt="home icon"
-          className="w-64 h-64 object-contain animate-fade-in"
+          className="w-64 h-64 object-contain animate-fade-in opacity-70"
         />
       </div>
     </div>
