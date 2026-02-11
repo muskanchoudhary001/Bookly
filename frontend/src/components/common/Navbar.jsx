@@ -73,7 +73,7 @@ const Navbar = () => {
             className="
             flex items-center gap-2
             px-4 py-2 rounded-full
-            bg-gray-100 hover:bg-gray-200
+            bg-gray-100 hover:bg-blue-100
             transition-all duration-300
             "
           >
