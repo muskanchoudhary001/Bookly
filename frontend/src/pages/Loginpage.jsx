@@ -10,42 +10,46 @@ const Loginpage = () => {
   const [password, setPassword] = useState("");
 
 
-const handleLogin = async (e) => {
-  e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await axios.post(
-      "http://localhost:3000/api/auth/login",
-      {
-        email,
-        password,
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/login",
+         {email,password,}
+      );
+
+      // Save token
+      localStorage.setItem("token", res.data.token);
+
+      // Save user
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      
+      //for testing only
+      console.log("LOGIN SUCCESS:", res.data);
+
+      // 🔥 Navigate based on role
+      if (res.data.user.role === "admin") {
+        navigate("/books");      // Admin home
+      } else {
+        navigate("/user-home");  // Normal user home
       }
-    );
+      
+      //temprory checking
+      console.log(email, password);
 
-    // Save token
-    localStorage.setItem("token", res.data.token);
 
-    // Save user
-    localStorage.setItem("user", JSON.stringify(res.data.user));
-
-    // 🔥 Navigate based on role
-    if (res.data.user.role === "admin") {
-      navigate("/books");      // Admin home
-    } else {
-      navigate("/user-home");  // Normal user home
+    } catch (err) {
+      console.log(err.response?.data);
+    alert(err.response?.data?.message || "Login failed");
     }
-
-  } catch (err) {
-    console.log(err);
-    alert("Invalid credentials");
-  }
-};
+  };
 
 
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      
+
       {/* Decorative Images */}
       <img
         src="./src/assets/LoginAssets/1.webp"
@@ -70,7 +74,7 @@ const handleLogin = async (e) => {
 
       {/* Login Card */}
       <div className="relative z-10 max-w-md w-full bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-gray-200 min-h-[400px]">
-        
+
         <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r 
            from-blue-400 to-blue-700
            bg-clip-text text-transparent">

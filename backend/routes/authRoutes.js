@@ -75,7 +75,7 @@ router.post("/login", async (req, res) => {
 
     console.log("Login attempt:", email, password);
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase() });
     console.log("User found:", user);
 
     if (!user) {
@@ -92,7 +92,7 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "90d" }
     );
 
     res.json({

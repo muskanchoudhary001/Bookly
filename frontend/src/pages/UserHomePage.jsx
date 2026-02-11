@@ -10,24 +10,48 @@ const UserHome = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const res = await axios.get("http://localhost:3000/api/books", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setBooks(res.data.data);
+      try {
+        if (!user?.token) return;
+
+        const res = await axios.get("http://localhost:3000/api/books", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+
+        setBooks(res.data.data);
+
+      } catch (error) {
+        console.log("Fetch books error:", error.response?.data || error.message);
+      }
     };
 
-    if (user) fetchBooks();
+    fetchBooks();
   }, [user]);
 
+
+
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        Welcome {user?.name}
+    <div className="p-8">
+      <h1
+        className="
+      text-4xl font-extrabold mb-8
+      bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800
+      bg-clip-text text-transparent
+      drop-shadow-sm
+    "
+      >
+        Welcome{" "}
+        <span className="text-blue-900 font-bold">
+          {user?.name}
+        </span>{" "}
+        👋
       </h1>
+
       <BooksCard books={books} />
+
     </div>
+
   );
 };
 

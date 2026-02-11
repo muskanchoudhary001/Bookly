@@ -12,6 +12,14 @@ import path from "path"
 
 const app = express();
 
+//Middleware for handling CORS POLICY
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ["Content-Type", "Authorization"],
+})
+)
+
 // Middleware (for JSON parsing, commonly needed)
 app.use(express.json());
 
@@ -20,14 +28,6 @@ app.use("/api/auth", authRoutes);
 
 //Middle ware for book covers
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
-
-//Middleware for handling CORS POLICY
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ["Content-Type", "Authorization"],
-})
-)
 
 // Route
 app.get("/", (req, res) => {
