@@ -15,8 +15,13 @@ const GuestHome = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-5xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent">Guest Books</h1>
-      
+<h1 className="text-4xl font-extrabold mb-8 drop-shadow-sm">
+  <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 bg-clip-text text-transparent">
+    Hello Guest
+  </span>{" "}
+  <span className="wave">👋</span>
+</h1>
+
       <BooksCard books={books} />
     </div>
   );

@@ -12,3 +12,20 @@ body {
     rgba(255, 255, 255, 0)
   );
 }
+
+ .wave {
+  display: inline-block;
+  margin-left: 8px;
+  transform-origin: 70% 70%;
+  animation: wave-animation 1.5s infinite;
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(20deg); }
+  30% { transform: rotate(-10deg); }
+  45% { transform: rotate(20deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
