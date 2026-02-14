@@ -41,7 +41,7 @@ const ShowBooks = () => {
       bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent">
         Book Details
       </h1>
-
+ 
       {loading ? (
         <Spinner />
       ) : !book ? (

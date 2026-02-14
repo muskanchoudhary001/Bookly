@@ -30,26 +30,36 @@ const Home = () => {
         <div className="min-h-screen p-4  flex flex-col items-center">
 
             {/* Buttons to toggle Table/Card */}
-            <div className="flex justify-center items-center gap-x-4 mb-6">
+            <div className="flex justify-center items-center gap-3 mb-6">
+                {/* Table Button */}
                 <button
-                    className={`px-4 py-1 rounded-lg transition ${showType === 'table'
-                            ? 'bg-blue-500 text-white'
-                            : 'bg-white/20 text-white hover:bg-blue-500 hover:text-white'}`
-                    }
                     onClick={() => setShowType('table')}
-                >
-                    Table
-                </button>
-                <button
-                    className={`px-4 py-1 rounded-lg transition ${showType === 'card'
-                            ? 'bg-blue-500 text-white'
-                            : 'bg-white/20 text-white hover:bg-blue-500 hover:text-white'}`
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-base transition-all duration-150
+                     ${showType === 'table'
+                              ? 'bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700 text-white shadow-md scale-105'
+                            : 'bg-gray-100 text-gray-800 hover:bg-gradient-to-r hover:from-blue-300 hover:via-blue-500 hover:to-blue-700 hover:text-white hover:shadow-md hover:scale-105'}`
                     }
-                    onClick={() => setShowType('card')}
                 >
-                    Card
+                    📋 Table
+                </button>
+
+                {/* Card Button */}
+                <button
+                    onClick={() => setShowType('card')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-base transition-all duration-150
+                      ${showType === 'card'
+                            ? 'bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700 text-white shadow-md scale-105'
+                            : 'bg-gray-100 text-gray-800 hover:bg-gradient-to-r hover:from-blue-300 hover:via-blue-500 hover:to-blue-700 hover:text-white hover:shadow-md hover:scale-105'}`
+                    }
+                >
+                    🗂️ Card
                 </button>
             </div>
+
+
+
+
+
 
             {/* Header + Add Button */}
             <div className="flex justify-between items-center w-full max-w-6xl mb-6">
