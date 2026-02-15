@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BackButton from '../components/common/BackButton'
 import Spinner from '../components/common/Spinner'
-import axios from 'axios'
+import api from "../services/api";
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSnackbar } from 'notistack'
 
@@ -11,25 +11,31 @@ const DeleteBooks = () => {
   const { id } = useParams()
   const { enqueueSnackbar } = useSnackbar()
 
-  const handleDeleteBook = () => {
-    const confirmed = window.confirm("Are you sure you want to delete this book?");
-    if (!confirmed) return;
+ const handleDeleteBook = async () => {
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this book?"
+  );
+  if (!confirmed) return;
 
+  try {
     setLoading(true);
 
-    axios
-      .delete(`http://localhost:3000/books/${id}`)
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar('Book deleted successfully !!', { varient: 'success' })
-        navigate('/');
-      })
-      .catch((error) => {
-        setLoading(false);
-        enqueueSnackbar("Error", { varient: 'error' })
-        console.log(error);
-      });
+    await api.delete(`/books/${id}`);
+
+    enqueueSnackbar("Book deleted successfully !!", {
+      variant: "success",
+    });
+
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+    enqueueSnackbar("Error deleting book", {
+      variant: "error",
+    });
+  } finally {
+    setLoading(false);
   }
+};
 
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center">

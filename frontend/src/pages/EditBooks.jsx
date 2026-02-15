@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../services/api";
 import { useSnackbar } from "notistack";
 import BackButton from "../components/common/BackButton";
 import Spinner from "../components/common/Spinner";
@@ -24,8 +24,9 @@ const EditBooks = () => {
       try {
         setLoading(true);
 
-        const res = await axios.get(`http://localhost:3000/books/${id}`);
-        const data = res.data;
+       const res = await api.get(`/books/${id}`);
+         const data = res.data.data;
+
 
         setTitle(data.title || "");
         setAuthor(data.author || "");
@@ -54,35 +55,36 @@ const EditBooks = () => {
     }
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+  const handleUpdate = async (e) => {
+  e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("author", author);
-    formData.append("publishYear", publishYear);
-    formData.append("noOfCopies", noOfCopies);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("author", author);
+  formData.append("publishYear", publishYear);
+  formData.append("noOfCopies", noOfCopies);
 
-    if (coverImage) {
-      formData.append("coverImage", coverImage);
-    }
+  if (coverImage) {
+    formData.append("coverImage", coverImage);
+  }
 
+  try {
     setLoading(true);
 
-    axios
-      .patch(`http://localhost:3000/books/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar("Book updated successfully", { variant: "success" });
-        navigate("/");
-      })
-      .catch(() => {
-        setLoading(false);
-        enqueueSnackbar("Error updating book", { variant: "error" });
-      });
-  };
+    await api.patch(`/books/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    enqueueSnackbar("Book updated successfully", { variant: "success" });
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+    enqueueSnackbar("Error updating book", { variant: "error" });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
