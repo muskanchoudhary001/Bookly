@@ -14,7 +14,8 @@ const ShowBooks = () => {
       try {
         setLoading(true)
         const response = await api.get(`/books/${id}`)
-        setBook(response.data)
+        console.log("SHOW BOOK RESPONSE:", response.data)
+        setBook(response.data.data)
       } catch (error) {
         console.log(error)
       } finally {

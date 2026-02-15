@@ -44,10 +44,10 @@ router.get("/", optionalProtect, async (req, res) => {
 
     if (req.user && req.user.role?.toLowerCase() === "admin") {
       books = await Book.find({});
-    } 
+    }
     else if (req.user) {
       books = await Book.find({ noOfCopies: { $gt: 10 } });
-    } 
+    }
     else {
       books = await Book.find({ noOfCopies: { $gte: 10 } }).limit(10);
     }
@@ -66,16 +66,25 @@ router.get("/", optionalProtect, async (req, res) => {
 
 
 // Route to get one book
-router.get("/:id",protect, async (request, response) => {
+router.get("/:id", async (req, res) => {
   try {
-    const { id } = request.params;
-    const book = await Book.findById(id);
-    return response.status(200).json(book);
+    const book = await Book.findById(req.params.id);
+
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: book,
+    });
+
   } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
+    console.log("SHOW BOOK ERROR:", error);
+    res.status(500).json({ message: error.message });
   }
 });
+
 
 // Route to update a book
 // router.put("/:id", async (request, response) => {
@@ -157,7 +166,7 @@ also when uploading cover image it
 
 
 // Route to delete a book
-router.delete("/:id", protect,adminOnly,async (request, response) => {
+router.delete("/:id", protect, adminOnly, async (request, response) => {
   try {
     const { id } = request.params;
     const result = await Book.findByIdAndDelete(id);
