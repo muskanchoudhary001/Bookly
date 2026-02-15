@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { MdOutlineAddBox } from "react-icons/md";
 import BooksCard from '../components/home/BooksCard';
 import BooksTable from '../components/home/BooksTable';
+import HelloGreet from '../components/common/HelloGreet';
 
 const Home = () => {
     const [books, setBooks] = useState([]);
@@ -63,13 +64,7 @@ const Home = () => {
 
             {/* Header + Add Button */}
             <div className="flex justify-between items-center w-full max-w-6xl mb-6">
-                <h1 className="text-4xl font-extrabold mb-8 drop-shadow-sm">
-                    <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 bg-clip-text text-transparent">
-                        Hello Admin
-                    </span>{" "}
-                    <span className="wave">👋</span>
-                </h1>
-
+                 <HelloGreet role="Admin" />
                 <Link to='/books/create'>
                     <MdOutlineAddBox className='text-sky-800 text-5xl hover:scale-110 transition-transform' />
                 </Link>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BooksCard from "../components/home/BooksCard";
+import HelloGreet from "../components/common/HelloGreet"
 
 const GuestHome = () => {
   const [books, setBooks] = useState([]);
@@ -15,13 +16,9 @@ const GuestHome = () => {
 
   return (
     <div className="p-6">
-<h1 className="text-4xl font-extrabold mb-8 drop-shadow-sm">
-  <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 bg-clip-text text-transparent">
-    Hello Guest
-  </span>{" "}
-  <span className="wave">👋</span>
-</h1>
-
+      <div className="text-left">
+          <HelloGreet role="Guest" />
+      </div>
       <BooksCard books={books} />
     </div>
   );

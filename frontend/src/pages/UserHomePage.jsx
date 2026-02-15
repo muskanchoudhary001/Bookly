@@ -3,6 +3,7 @@ import axios from "axios";
 import BooksCard from "../components/home/BooksCard";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import HelloGreet from "../components/common/HelloGreet";
  
 
 const UserHome = () => {
@@ -39,16 +40,7 @@ const UserHome = () => {
 
   return (
     <div className="p-8">
-      <h1 className="text-4xl font-extrabold mb-8 drop-shadow-sm">
-        <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 bg-clip-text text-transparent">
-          Welcome
-        </span>{" "}
-        <span className="text-blue-900 font-bold">
-          {user?.name}
-        </span>{" "}
-        <span className="wave">👋</span>
-      </h1>
-
+      <HelloGreet name={user?.name} />
       <BooksCard books={books} />
 
     </div>
